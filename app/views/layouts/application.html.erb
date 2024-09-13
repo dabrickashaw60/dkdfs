@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DKDFS</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <%= favicon_link_tag 'nfl-logo.ico' %>
+
+    <%= javascript_importmap_tags %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <%= javascript_include_tag 'fantasy-java', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'fantasy-style', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- jQuery (required for DataTables) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- DataTables CSS and JS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+  </head>
+
+  <body>
+    	<div class="top-bottom-bar">
+    	<div class="button-selection-holder">
+        	<a href="http://www.dkfootballsunday.com"> 
+          <%= image_tag 'DK-Football-Sunday-Logo.png', class: 'main-logo' %>  
+            </a>
+            <ul class="button-list">
+            	<li><a class="navBar-top-dropdown" href="home.html">HOME</a></li>
+                <li id="schedule-btn"><a class="navBar-top-dropdown" href="schedule.html">SCHEDULE</a></li>
+                <li><a class="navBar-top-dropdown" href="standings.html">STANDINGS</a></li>
+                <li>
+                  <a class="navBar-top-dropdown" target="_blank" href="https://www.draftkings.com/leagues/sshycnq8/contests/upcoming">
+                    <%= image_tag 'DK_Logo-one-line.png', class: 'menu-dk-logo', alt: 'League Page' %> LEAGUE PAGE
+                  </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!-- MOBILE 3 LINE MENU -->
+<div class="home-header">
+  <div class="box-shadow-sec">
+    <div id="menu" href="#menu" class="box-shadow-menu"></div>
+    <div id="menu-2" href="#menu" class="box-shadow-menu-2"></div>
+  </div>
+</div>
+<div class="holder">
+  <ul>
+    <li><a href="http://dkfootballsunday.com">HOME</a></li>
+    <li><a href="schedule.html">SCHEDULE</a></li>
+    <li><a href="standings.html">STANDINGS</a></li>
+    <li>
+      <a target="_blank" href="https://www.draftkings.com/leagues/cnju2zq8/contests/upcoming">                    
+      <%= image_tag 'DK_Logo-one-line.png', class: 'menu-dk-logo', alt: 'League Page' %> LEAGUE PAGE
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- END 3 LINE MOBILE MENU -->
+<div class="page-wrapper">
+    <div class="top-bar">
+        <div class="">
+
+        </div>
+
+    </div>
+    <%= yield %>
+  </body>
+</html>

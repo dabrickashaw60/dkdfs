@@ -1,0 +1,25 @@
+<div class="home-page-holder">
+  <div class="home-block-holder">
+    <div class="schedule-content-holder">
+      <div id="schedule-block" class="schedule-block">
+        <h1>Upload CSV for Week</h1>
+
+        <%= form_with url: upload_csv_weeks_path, method: :post, local: true, multipart: true do |f| %>
+          <div class="field">
+            <%= label_tag :week_number, "Week Number" %>
+            <%= number_field_tag :week_number %>
+          </div>
+
+          <div class="field">
+            <%= label_tag :file, "CSV File" %>
+            <%= file_field_tag :file %>
+          </div>
+
+          <div class="actions">
+            <%= submit_tag "Upload CSV" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+
+<div class="home-page-holder">
+  <div class="standings-block-holder">
+	   	<div class="standings-content-holder">
+            <div id="standings-block" class="standings-block">
+            	<div class="standings-tbl-holder">
+                <table id="standings-tbl"class="standings-tbl">
+                  <thead>
+                    <tr>
+                      <th>POS</th>
+                      <th>TEAM</th>
+                      <th>W</th>
+                      <th>L</th>
+                      <th>T</th>
+                      <th>PF</th> <!-- Points For -->
+                      <th>PA</th> <!-- Points Against -->
+                      <th>HIGH WEEK</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @teams.each_with_index do |team, index| %>
+                      <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= team.name %></td>
+                        <td><%= team.wins %></td>
+                        <td><%= team.losses %></td>
+                        <td><%= team.ties %></td>
+                        <td><%= team.total_points_for %></td> <!-- Use the dynamic calculation -->
+                        <td><%= team.total_points_against %></td> <!-- Use the dynamic calculation -->
+                        <td><%= team.highest_week %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+
+                <table id="mobile-standings-tbl" class="mobile-standings-tbl">
+                <thead>
+                  <tr>
+                    <th width="10%">POS</th>
+                    <th width="30%">TEAM</th>
+                    <th width="10%">W</th>
+                    <th width="10%">L</th>
+                    <th width="10%">T</th>
+                    <th width="10%">PF</th>
+                    <th width="10%">PA</th>
+                    <th width="10%">HIGH WEEK</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @teams.each_with_index do |team, index| %>
+                    <tr>
+                      <td><%= index + 1 %></td>
+                      <td><%= team.name %></td>
+                      <td><%= team.wins %></td>
+                      <td><%= team.losses %></td>
+                      <td><%= team.ties %></td>
+                      <td><%= team.points_for %></td>
+                      <td><%= team.points_against %></td>
+                      <td><%= team.highest_week %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- -->
+

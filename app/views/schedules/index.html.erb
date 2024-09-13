@@ -1,0 +1,50 @@
+<h1>SCHEDULE</h1>
+
+<h2>WEEKS</h2>
+
+<div class="week-selector">
+  <% @weeks.each do |week| %>
+    <div id="week-<%= week.number %>" class="week-num">Week <%= week.number %></div>
+  <% end %>
+</div>
+
+<div class="schedule-tbl-holder">
+  <% @weeks.each do |week| %>
+    <table id="week<%= week.number %>" class="schedule-tbl" style="display: none;">
+      <thead>
+        <tr>
+          <th>Home Team</th>
+          <th>Score</th>
+          <th>Away Team</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% week.games.each do |game| %>
+          <tr>
+            <td><%= game.home_team.name %></td>
+            <td><%= game.home_score %> vs <%= game.away_score %></td>
+            <td><%= game.away_team.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener("turbo:load", function() {
+    // Initially show Week 1 table
+    document.querySelector("#week1").style.display = "table";
+
+    // Attach click event to each week button
+    document.querySelectorAll(".week-num").forEach(function(weekButton) {
+      weekButton.addEventListener("click", function() {
+        const weekId = weekButton.id.replace('week-', '');
+        document.querySelectorAll(".schedule-tbl").forEach(function(table) {
+          table.style.display = "none"; // Hide all tables
+        });
+        document.querySelector(`#week${weekId}`).style.display = "table"; // Show selected week
+      });
+    });
+  });
+</script>

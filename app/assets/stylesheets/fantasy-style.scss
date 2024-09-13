@@ -1,0 +1,722 @@
+@charset "utf-8";
+/* CSS Document
+
+	date created: 7/18/2018
+	description: Fantasy football league page style sheet
+*/
+html{}
+body{
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+	font-family: 'VT323', monospace;
+	width: 100%;
+	background: image-url('tecmostadium-large.jpg');
+	background-color: #00a800;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: top center;
+}
+/*****************	PHOTOS	*************/
+.main-logo{
+	height: 125px;
+	width: auto;
+	position: absolute;
+	left: 20px;
+	top: 5px;
+	padding: 5px;
+	transition: all .3s;
+}
+.main-logo-mobile{
+	display: none;
+	height: 100px;
+    width: auto;
+    position: absolute;
+    left: 5px;
+    top: 0px;
+    padding: 5px;
+    transition: all .3s;
+}
+.menu-dk-logo{
+    height: 30px;
+    width: auto;
+    position: absolute;
+    margin: 0 auto;
+	left: 0;
+	right: 0;
+    top: -15px;
+}
+.mobile-menu-dk-logo{
+	height: 45px;
+    width: auto;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 15px;
+    top: -10px;
+}
+.champ-trophy{
+    height: 20px;
+    width: auto;
+    position: relative;
+}
+/***********************************************/
+.top-bar, .standings-top-bar{
+	position: absolute;
+	margin: 0 auto;
+    top: 150px;
+	left: 0;
+	right: 0;
+	width: 1000px;
+	height: 400px;
+	background: image-url('TECMO-KICKER.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	z-index: 5;
+}
+.top-bottom-bar, .standings-top-bottom-bar{
+	position: fixed;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 150px;
+	width: 1000px;
+	background: black;
+	transition: all .3s;
+	z-index: 15;
+}
+.button-selection-holder, .standings-button-selection-holder{
+	position: relative;
+	margin: 0 auto;
+	width: 1000px;
+	height: 150px;
+	background: none;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+}
+.button-list, .standings-button-list{
+    list-style: none;
+    margin: 0 auto;
+    color: #030;
+    float: right;
+    margin-top: 30px;
+    margin-right: 50px;
+	transition: all .3s;
+}
+.button-list li, .standings-button-list li{
+	float: left;
+	height: 60px;
+	width: 150px;
+	line-height: 60px;
+	text-align: center;
+	background: none;
+	cursor: pointer;
+}
+.navBar-top-dropdown{
+	text-decoration: none;
+	color: white;
+	font-size: 28px;
+	font-weight:  lighter;
+	margin-top: 0px;
+	background-color: nones;
+	display: inline-block;
+	height: 65px;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 60px;
+	position: relative;
+	z-index: 1;
+	transition: all .3s;
+
+	}
+
+.navBar-top-dropdown:hover{
+
+	color: #00a800;
+	transition: all .25s;
+	border-top: none;
+
+	}
+.navBar-top-dropdown:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    bottom: 0;
+	left: 0;
+	transform: scaleX(0);
+    transform-origin: bottom center;
+    background: #00a800;
+    z-index: -1;
+    transition: transform 0.3s;
+}
+.navBar-top-dropdown:hover::after {
+    transform: scaleX(1);
+}
+.button-list li:hover, .standings-button-list li:hover{
+	background: none;
+}
+.button-list li a:hover, .standings-button-list li a:hover{
+}
+.home-block-holder, .standings-block-holder{
+    position: absolute;
+    width: 1000px;
+    height: auto;
+    background: #00a800;
+    margin: 0 auto;
+    top: 525px;
+    left: 0;
+    right: 0;
+    margin-bottom: 25px;
+}
+.standings-block-holder{
+	top: 550px;
+}
+.content-holder, .schedule-content-holder, .standings-content-holder{
+	height: auto;
+	width: 95%;
+	position: relative;
+	margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 25px;
+	overflow: hidden;
+	background: none;
+    text-align: center;
+}
+.week-selector{
+    
+    height: 60px;
+    width: 100%;
+    position: relative;
+    background: none;
+}
+.week-num{
+    height: 30px;
+    width: 129px;
+    float: left;
+    background: none;
+    color: white;
+    line-height: 25px;
+    text-align: center;
+    border: 2px solid white;
+    cursor: pointer;
+    font-size: 20px;
+}
+.week-num:hover{
+    background: white;
+    color: black;
+}
+#week14{
+    display: table;
+}
+#week1, #week2, #week3, #week4, #week5, #week6, #week7, #week8, #week9, #week10, #week11, #week12, #week13{
+    display: none;
+}
+.payout-block, .standings-block, .schedule-block, .dk-league-page-block{
+	height: 400px;
+	width: 98%;
+	margin: 0 auto;
+	position: relative;
+	margin-bottom: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 0px 5px 5px #333;
+	background: black;
+	color: white;
+}
+.payout-block{
+	height: auto;
+}
+.standings-block{
+	background: black;
+	height: auto;
+}
+.schedule-block{
+	background: black;
+	height: auto;
+	padding-bottom: 25px;
+}
+.schedule-block h1{
+    padding-top: 20px;
+}
+.home-desc{
+	height: auto;
+	width: 100%;
+	position: relative;
+	margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#home-editable-text{
+	margin: 0 auto;
+	padding: 30px;
+	font-size: 22px;
+	font-weight:  lighter;
+}
+.payout-tbl, .rules-tbl, .new-season-tbl{
+	position: relative;
+	margin: 0 auto;
+	height: auto;
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	padding-bottom: 10px;
+	border-collapse: collapse;
+	font-size: 22px;
+	font-weight:  lighter;
+}
+.home-desc img{
+	width: 75%;
+	height: auto;
+}
+.payout-tbl tr:first-child{
+	border-bottom: 4px solid white;
+}
+.payout-tbl tr td:last-child{
+	text-align: center;
+}
+.payout-tbl tr:hover, .rules-tbl tr:hover, .new-season-tbl tr:hover{
+	background: white;
+	color: black;
+}
+.payout-tbl td, .rules-tbl td, .new-season-tbl td{
+	padding: 10px;
+}
+/*    3 LINE MENU BUTTON   */
+.home-header, .standings-home-header{
+	display: none;
+	overflow: hidden;
+}
+.box-shadow-sec{
+  height: 30px;
+  width: 35px;
+  display: inline;
+  z-index: 25;
+  cursor: pointer;
+  float: right;
+  padding: 2px 2px 6px 2px;
+  margin-top: 8px;
+  margin-right: 8px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+}
+.box-shadow-menu {
+  position: relative;
+  padding-left: 1.25em;
+  cursor: pointer;
+  transition: all .3s;
+  background: none;
+}
+.box-shadow-menu:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  width: 30px;
+  height: 4px;
+  background: black;
+  box-shadow: none;
+  transition: all .5s;
+  z-index: 25;
+  border: 2px solid #00a800;
+}
+.box-shadow-menu.changed:before {
+  top: 15px;
+  box-shadow: none;
+  left: 65px;
+  background: #00a800;
+}
+.box-shadow-menu:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 30px;
+  height: 4px;
+  background: black;
+  transition: all .3s;
+  box-shadow: none;
+  z-index: 25;
+  border: 2px solid #00a800;
+}
+.box-shadow-menu.changed:after{
+  top: 15px;
+  box-shadow: none;
+  transform: rotate(45deg);
+  background: #00a800;
+
+}
+.box-shadow-menu-2 {
+  position: relative;
+  padding-left: 1.25em;
+  cursor: pointer;
+  transition: all .3s;
+  background: none;
+  z-index: 25;
+}
+.box-shadow-menu-2:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 25px;
+  width: 30px;
+  height: 4px;
+  background: black;
+  transition: all .3s;
+  box-shadow: none;
+  border: 2px solid #00a800;
+}
+.box-shadow-menu-2.changing:after{
+  top: 15px;
+  box-shadow: none;
+  transform: rotate(-45deg);
+  background: #00a800;
+
+  }
+/*
+	END 3 LINE MENU BUTTON
+	BEGIN DROP DOWN MENU
+*/
+.holder{
+	width: 100%;
+    height: 100%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    position: fixed;
+    top: 0px;
+    background: image-url('tecmo_lead-dark.png');
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: all .3s;
+    z-index: 20;
+    box-shadow: 0px 3px 10px 5px #111111;
+}
+.show{
+  transform: scaleY(1);
+}
+.holder ul{
+  padding:0;
+  width: 100%;
+  margin-top: 60px;
+}
+.holder li{
+	width: 100%;
+    height: 100px;
+    line-height: 100px;
+    list-style-type: none;
+    text-align: center;
+    font-variant: small-caps;
+    font-size: 32px;
+    font-weight: lighter;
+    cursor: pointer;
+    transition: all .2s;
+    position: relative;
+}
+.holder li a{
+  line-height: 50px;
+  color: white;
+  transition: all .2s;
+  text-decoration: none;
+}
+.holder li:hover{
+  border-left: 4px solid #0F0;
+}
+.holder li:hover a{
+  color: #00a800;
+}
+/*
+	END DROP DOWN MENU
+
+
+*/
+/* STANDINGS PAGE */
+.standings-tbl-holder{
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	padding-top: 20px;
+}
+.standings-tbl{
+	font-size: 22px;
+	font-weight:  lighter;
+	text-align: center;
+	width: 95%;
+	position: relative;
+	margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+    margin-top: 30px;
+    padding-bottom: 20px;
+    color: white;
+}
+.standings-tbl tr:hover{
+	background: white;
+	color: black;
+}
+.standings-tbl-holder tr:hover th{
+	background: black;
+	color: white;
+	cursor: pointer;
+}
+.standings-tbl-holder h1{
+	-webkit-margin-before: 0px;
+}
+#standings-tbl th.headerSortUp, #mobile-standings-tbl th.headerSortUp {
+    background-image:url(pics/asc.gif);
+	color: black;
+    background-color: white;
+	background-repeat: no-repeat;
+    background-position: center right;
+}
+#standings-tbl th.headerSortDown, #mobile-standings-tbl th.headerSortDown {
+    background-image: url(pics/desc.gif);
+    background-color: white;
+	color: black;
+	background-repeat: no-repeat;
+    background-position: center right;
+}
+
+.mobile-standings-tbl{
+	display: none;
+}
+.standings-tbl-holder h3{
+	padding-bottom: 10px;
+}
+table.dataTable tbody tr {
+	background: black !important;
+}
+table.dataTable tbody tr:hover{
+	background: white !important;
+}
+
+
+
+
+/******************/
+
+/* SCHEDULE PAGE */
+.schedule-tbl-holder{
+	text-align: center;
+}
+.schedule-tbl-holder h1{
+	padding: 25px;
+    margin-block-end: 0;
+}
+.schedule-tbl{
+	font-size: 24px;
+	font-weight: lighter;
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+.schedule-tbl tr th:hover{
+	background: black;
+	color: white;
+}
+
+
+.schedule-tbl tr:hover{
+	background: white;
+	color: black;
+}
+.schedule-tbl tr td{
+	padding-top: 10px;
+    padding-bottom: 10px;
+	width: 33%;
+}
+.schedule-tbl th{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.dropdown-list-holder{
+    height: 50px;
+    width: 80%;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+	background: white;
+	top: 65px;
+	z-index: 1;
+	display: none;
+}
+.week-dropdown-holder{
+	position: relative;
+	margin: 0 auto;
+	float: left;
+	height: 100%;
+	width: 50%;
+
+}
+.team-dropdown-holder{
+	position: relative;
+	margin: 0 auto;
+	float: right;
+	height: 100%;
+	width: 50%;
+}
+/*****************/
+
+/****	MEMBERS TABLE	****/
+.members-tbl{
+	position: relative;
+	margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px;
+	text-align: center;
+	height: auto;
+}
+.members-tbl tr:hover{
+	background: white;
+	color: black;
+}
+.members-tbl tr td:first-child{
+	font-size: 24px;
+	font-weight: lighter;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 50%;
+}
+.members-tbl tr td{
+	font-size: 24px;
+	font-weight: lighter;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 25%;
+}
+.members-tbl tr:first-child{
+	border-bottom: 4px solid white;
+}
+
+.members-tbl th{
+	font-size: 24px;
+	  padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 4px solid white;
+}
+/****************/
+@media (max-width: 480px){
+.main-logo{
+	left: 5px;
+}
+.main-logo-mobile{
+
+}
+.top-bottom-bar{
+	width: 100%;
+	background: black;
+}
+.standings-top-bottom-bar{
+	width: 600px;
+}
+.top-bar{
+	width: 100%;
+}
+.button-selection-holder{
+	width: 100%;
+}
+
+.home-block-holder{
+	width: 100%;
+}
+.payout-tbl, .rules-tbl, .members-tbl, .new-season-tbl{
+	width: 100%;
+}
+.button-list{
+	display: none;
+}
+.home-header{
+	display: block;
+}
+.members-tbl tr td{
+	font-size: 20px;
+}
+.members-tbl tr td:first-child{
+	font-size: 18px;
+}
+
+/* STANDINGS STUFF */
+.standings-top-bar{
+	width: 100%;
+}
+.standings-button-selection-holder{
+	width: 600px;
+}
+.standings-home-header{
+	display: none;
+}
+.standings-button-list{
+	display: none;
+	margin-top: 165px;
+}
+.button-selection-holder{
+	overflow: visible;
+}
+.standings-button-list li{
+	width: 125px;
+}
+.standings-top-bar{
+	width: 600px;
+}
+.standings-tbl{
+	display: none;
+}
+.mobile-standings-tbl{
+	display: block;
+	color: white;
+	text-align: center;
+}
+.standings-block{
+	width: 100%;
+}
+.standings-block-holder{
+	width: 600px;
+}
+.standings-content-holder{
+	width: 100%;
+}
+.mobile-quick-links{
+	display: block;
+}
+
+/* SCHEDULE STUFF */
+.schedule-tbl{
+	font-size: 14px;
+}
+.schedule-tbl th{
+	font-size: 18px;
+}
+.schedule-content-holder{
+	width: 100%;
+    text-align: center;
+}
+.schedule-block{
+	width: 100%;
+}
+.week-selector{
+    height: auto;
+    display: flex;
+}
+
+
+}

@@ -1,0 +1,69 @@
+<div class="home-page-holder">
+  <div class="home-block-holder">
+    <div class="schedule-content-holder">
+
+      <div id="schedule-block" class="schedule-block">
+        <h1>SCHEDULE</h1>
+
+        <div class="week-selector">
+          <% @weeks.each do |week| %>
+            <div id="week-<%= week.number %>" class="week-num">Week <%= week.number %></div>
+          <% end %>
+        </div>
+
+        <h2 id="current-week-heading">Week 1</h2>
+
+        <div class="schedule-tbl-holder">
+          <% @weeks.each do |week| %>
+            <table id="week<%= week.number %>" class="schedule-tbl" style="display: none;">
+              <thead>
+                <tr>
+                  <th>Home Team</th>
+                  <th>Score</th>
+                  <th>Away Team</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% week.games.each do |game| %>
+                  <tr>
+                    <td><%= game.home_team.name %></td>
+                    <td><%= game.home_score %> vs <%= game.away_score %></td>
+                    <td><%= game.away_team.name %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("turbo:load", function() {
+  // Initially show Week 1 table and set heading to Week 1
+  document.querySelector("#week1").style.display = "table";
+  document.querySelector("#current-week-heading").textContent = "Week 1";
+
+  // Attach click event to each week button
+  document.querySelectorAll(".week-num").forEach(function(weekButton) {
+    weekButton.addEventListener("click", function() {
+      const weekId = weekButton.id.replace('week-', '');
+
+      // Hide all tables
+      document.querySelectorAll(".schedule-tbl").forEach(function(table) {
+        table.style.display = "none";
+      });
+
+      // Show selected week table
+      document.querySelector(`#week${weekId}`).style.display = "table";
+
+      // Update the heading to reflect the selected week
+      document.querySelector("#current-week-heading").textContent = `Week ${weekId}`;
+    });
+  });
+});
+
+</script>
