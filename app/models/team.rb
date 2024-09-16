@@ -17,15 +17,31 @@ class Team < ApplicationRecord
   end
 
   def update_highest_week
-    highest_game = Game.where("home_team_id = ? OR away_team_id = ?", self.id, self.id)
-                       .select("games.*, greatest(home_score, away_score) as max_score")
-                       .order('max_score DESC').first
-    
-    if highest_game
-      max_score = self.id == highest_game.home_team_id ? highest_game.home_score : highest_game.away_score
-      week_number = highest_game.week.number
-      
-      self.update(highest_week: "#{max_score} (Week #{week_number})")
+    # Fetch all games where the team is either home or away
+    games = Game.where("home_team_id = ? OR away_team_id = ?", self.id, self.id)
+
+    highest_score = 0
+    highest_week = nil
+
+    # Loop through each game and calculate the highest score
+    games.each do |game|
+      # Check if the team is home or away and get the relevant score
+      if game.home_team_id == self.id
+        current_score = game.home_score
+      else
+        current_score = game.away_score
+      end
+
+      # Update highest score and week if the current score is greater
+      if current_score && current_score > highest_score
+        highest_score = current_score
+        highest_week = game.week.number
+      end
+    end
+
+    # Update the team's highest_week attribute with score and week number
+    if highest_week
+      self.update(highest_week: "#{highest_score} (Week #{highest_week})")
     end
   end
   
