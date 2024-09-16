@@ -1,0 +1,29 @@
+"pkg-config --exists yaml-0.1"
+package configuration for yaml-0.1 is not found
+find_header: checking for yaml.h... -------------------- no
+
+"gcc -o conftest -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I.    -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC conftest.c  -L. -L/opt/alt/ruby27/lib64 -Wl,-rpath,/opt/alt/ruby27/lib64 -L.  -L/opt/alt/ruby27/lib64 -Wl,-rpath=/opt/alt/ruby27/lib64 -fstack-protector-strong -rdynamic -Wl,-export-dynamic  -m64   -Wl,-rpath,/opt/alt/ruby27/lib64 -L/opt/alt/ruby27/lib64 -lruby  -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+"gcc -E -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I.    -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: yaml.h: No such file or directory
+ #include <yaml.h>
+          ^~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <yaml.h>
+/* end */
+
+--------------------
+

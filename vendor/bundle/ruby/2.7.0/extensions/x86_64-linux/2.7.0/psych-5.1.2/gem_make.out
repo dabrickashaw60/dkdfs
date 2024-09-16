@@ -1,0 +1,39 @@
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/psych-5.1.2/ext/psych
+/opt/alt/ruby27/bin/ruby -I /opt/alt/ruby27/share/rubygems -r ./siteconf20240916-3416007-1i6wyfc.rb extconf.rb
+checking for yaml.h... no
+yaml.h not found
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of necessary
+libraries and/or headers.  Check the mkmf.log file for more details.  You may
+need configuration options.
+
+Provided configuration options:
+	--with-opt-dir
+	--without-opt-dir
+	--with-opt-include
+	--without-opt-include=${opt-dir}/include
+	--with-opt-lib
+	--without-opt-lib=${opt-dir}/lib64
+	--with-make-prog
+	--without-make-prog
+	--srcdir=.
+	--curdir
+	--ruby=/opt/alt/ruby27/bin/$(RUBY_BASE_NAME)
+	--with-libyaml-source-dir
+	--without-libyaml-source-dir
+	--with-yaml-0.1-config
+	--without-yaml-0.1-config
+	--with-pkg-config
+	--without-pkg-config
+	--with-libyaml-dir
+	--without-libyaml-dir
+	--with-libyaml-include
+	--without-libyaml-include=${libyaml-dir}/include
+	--with-libyaml-lib
+	--without-libyaml-lib=${libyaml-dir}/lib64
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/extensions/x86_64-linux/2.7.0/psych-5.1.2/mkmf.log
+
+extconf failed, exit code 1

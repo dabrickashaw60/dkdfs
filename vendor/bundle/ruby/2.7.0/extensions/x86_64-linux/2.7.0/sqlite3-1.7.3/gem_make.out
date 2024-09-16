@@ -1,0 +1,51 @@
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ext/sqlite3
+/opt/alt/ruby27/bin/ruby -I /opt/alt/ruby27/share/rubygems -r ./siteconf20240916-3416007-1ktsgtp.rb extconf.rb
+Building sqlite3-ruby using packaged sqlite3.
+Extracting sqlite-autoconf-3450200.tar.gz into tmp/x86_64-redhat-linux/ports/sqlite3/3.45.2... OK
+Running 'configure' for sqlite3 3.45.2... OK
+Running 'compile' for sqlite3 3.45.2... OK
+Running 'install' for sqlite3 3.45.2... OK
+Activating sqlite3 3.45.2 (from /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ports/x86_64-redhat-linux/sqlite3/3.45.2)...
+checking for whether -L/home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ports/x86_64-redhat-linux/sqlite3/3.45.2/lib is accepted as LDFLAGS... yes
+checking for whether -lsqlite3 is accepted as LDFLAGS... yes
+checking for whether -lz is accepted as LDFLAGS... yes
+checking for whether -lm is accepted as LDFLAGS... yes
+checking for whether -ldl is accepted as LDFLAGS... yes
+checking for whether -lpthread is accepted as LDFLAGS... yes
+checking for whether -fvisibility=hidden is accepted as CFLAGS... yes
+checking for sqlite3.h... yes
+checking for sqlite3_libversion_number() in -lsqlite3... yes
+checking for rb_proc_arity()... yes
+checking for rb_integer_pack()... yes
+checking for sqlite3_initialize()... yes
+checking for sqlite3_backup_init()... yes
+checking for sqlite3_column_database_name()... no
+checking for sqlite3_enable_load_extension()... yes
+checking for sqlite3_load_extension()... yes
+checking for sqlite3_open_v2()... yes
+checking for sqlite3_prepare_v2()... yes
+checking for sqlite3_int64 in sqlite3.h... yes
+checking for sqlite3_uint64 in sqlite3.h... yes
+creating Makefile
+
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ext/sqlite3
+make "DESTDIR=" clean
+rm -f 
+rm -f sqlite3_native.so  *.o  *.bak mkmf.log .*.time
+
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ext/sqlite3
+make "DESTDIR="
+gcc -I. -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I. -I/home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ports/x86_64-redhat-linux/sqlite3/3.45.2/include -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC  -fvisibility=hidden -m64 -o aggregator.o -c aggregator.c
+gcc -I. -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I. -I/home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ports/x86_64-redhat-linux/sqlite3/3.45.2/include -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC  -fvisibility=hidden -m64 -o backup.o -c backup.c
+gcc -I. -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I. -I/home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ports/x86_64-redhat-linux/sqlite3/3.45.2/include -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC  -fvisibility=hidden -m64 -o database.o -c database.c
+gcc -I. -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I. -I/home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ports/x86_64-redhat-linux/sqlite3/3.45.2/include -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC  -fvisibility=hidden -m64 -o exception.o -c exception.c
+gcc -I. -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I. -I/home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ports/x86_64-redhat-linux/sqlite3/3.45.2/include -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC  -fvisibility=hidden -m64 -o sqlite3.o -c sqlite3.c
+gcc -I. -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I. -I/home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ports/x86_64-redhat-linux/sqlite3/3.45.2/include -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC  -fvisibility=hidden -m64 -o statement.o -c statement.c
+rm -f sqlite3_native.so
+gcc -shared -o sqlite3_native.so aggregator.o backup.o database.o exception.o sqlite3.o statement.o -L. -L/opt/alt/ruby27/lib64 -Wl,-rpath,/opt/alt/ruby27/lib64 -L.  -L/opt/alt/ruby27/lib64 -Wl,-rpath=/opt/alt/ruby27/lib64 -fstack-protector-strong -rdynamic -Wl,-export-dynamic  -L/home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ports/x86_64-redhat-linux/sqlite3/3.45.2/lib -lsqlite3 -lz -lm -ldl -lpthread -L/opt/alt/ruby27/lib64 -Wl,-rpath=/opt/alt/ruby27/lib64  -m64  -Wl,-rpath,/opt/alt/ruby27/lib64 -L/opt/alt/ruby27/lib64 -lruby -lsqlite3  -lsqlite3 -lm   -lc
+
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.7.3/ext/sqlite3
+make "DESTDIR=" install
+/usr/bin/mkdir -p . ./.gem.20240916-3416007-1lqfixh/sqlite3
+exit > .sitearchdir.-.sqlite3.time
+/usr/bin/install -c -m 0755 sqlite3_native.so ./.gem.20240916-3416007-1lqfixh/sqlite3

@@ -1,0 +1,24 @@
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.18.4/ext/bootsnap
+/opt/alt/ruby27/bin/ruby -I /opt/alt/ruby27/share/rubygems -r ./siteconf20240916-3392277-1km5sfo.rb extconf.rb
+checking for fdatasync() in unistd.h... yes
+checking for whether -D_GNU_SOURCE is accepted as CPPFLAGS... yes
+checking for whether -O3 is accepted as CFLAGS... yes
+checking for whether -std=c99 is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.18.4/ext/bootsnap
+make "DESTDIR=" clean
+rm -f 
+rm -f bootsnap.so  *.o  *.bak mkmf.log .*.time
+
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.18.4/ext/bootsnap
+make "DESTDIR="
+gcc -I. -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I. -DHAVE_FDATASYNC    -D_GNU_SOURCE -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC -O3 -std=c99 -m64 -o bootsnap.o -c bootsnap.c
+rm -f bootsnap.so
+gcc -shared -o bootsnap.so bootsnap.o -L. -L/opt/alt/ruby27/lib64 -Wl,-rpath,/opt/alt/ruby27/lib64 -L.  -L/opt/alt/ruby27/lib64 -Wl,-rpath=/opt/alt/ruby27/lib64 -fstack-protector-strong -rdynamic -Wl,-export-dynamic -L/opt/alt/ruby27/lib64 -Wl,-rpath=/opt/alt/ruby27/lib64  -m64  -Wl,-rpath,/opt/alt/ruby27/lib64 -L/opt/alt/ruby27/lib64 -lruby  -lm   -lc
+
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.18.4/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/mkdir -p . ./.gem.20240916-3392277-10zz4dp/bootsnap
+exit > .sitearchdir.-.bootsnap.time
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20240916-3392277-10zz4dp/bootsnap

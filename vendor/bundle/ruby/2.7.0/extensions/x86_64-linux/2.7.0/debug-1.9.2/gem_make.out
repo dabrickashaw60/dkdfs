@@ -1,0 +1,21 @@
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/debug-1.9.2/ext/debug
+/opt/alt/ruby27/bin/ruby -I /opt/alt/ruby27/share/rubygems -r ./siteconf20240916-3427786-1v2pfxo.rb extconf.rb
+creating Makefile
+
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/debug-1.9.2/ext/debug
+make "DESTDIR=" clean
+rm -f 
+rm -f debug.so  *.o  *.bak mkmf.log .*.time
+
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/debug-1.9.2/ext/debug
+make "DESTDIR="
+gcc -I. -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I. -DHAVE_RB_ISEQ -DHAVE_RB_ISEQ_PARAMETERS -DHAVE_RB_ISEQ_CODE_LOCATION    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC -m64 -o debug.o -c debug.c
+gcc -I. -I/opt/alt/ruby27/include -I/opt/alt/ruby27/include/ruby/backward -I/opt/alt/ruby27/include -I. -DHAVE_RB_ISEQ -DHAVE_RB_ISEQ_PARAMETERS -DHAVE_RB_ISEQ_CODE_LOCATION    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC -m64 -o iseq_collector.o -c iseq_collector.c
+rm -f debug.so
+gcc -shared -o debug.so debug.o iseq_collector.o -L. -L/opt/alt/ruby27/lib64 -Wl,-rpath,/opt/alt/ruby27/lib64 -L.  -L/opt/alt/ruby27/lib64 -Wl,-rpath=/opt/alt/ruby27/lib64 -fstack-protector-strong -rdynamic -Wl,-export-dynamic -L/opt/alt/ruby27/lib64 -Wl,-rpath=/opt/alt/ruby27/lib64  -m64  -Wl,-rpath,/opt/alt/ruby27/lib64 -L/opt/alt/ruby27/lib64 -lruby  -lm   -lc
+
+current directory: /home/s4ndfvytw8mg/public_html/dkdfs/vendor/bundle/ruby/2.7.0/gems/debug-1.9.2/ext/debug
+make "DESTDIR=" install
+/usr/bin/mkdir -p . ./.gem.20240916-3427786-1063p98/debug
+exit > .sitearchdir.-.debug.time
+/usr/bin/install -c -m 0755 debug.so ./.gem.20240916-3427786-1063p98/debug

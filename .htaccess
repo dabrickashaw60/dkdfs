@@ -1,0 +1,21 @@
+# Enable Passenger for this directory
+PassengerEnabled on
+
+# Specify the Ruby version (adjust if needed)
+PassengerRuby /opt/alt/ruby27/bin/ruby
+
+# Specify the environment (production in this case)
+PassengerAppEnv production
+
+# Enable detailed error pages
+PassengerFriendlyErrorPages on
+
+# Specify the directory where your app is located
+PassengerAppRoot /home/s4ndfvytw8mg/public_html/dkdfs
+
+# Specify the type of app (Rack-based, which is Rails)
+PassengerAppType rack
+
+# Specify the entry file for Passenger (Rails' default is config.ru)
+PassengerStartupFile config.ru
+
