@@ -1,0 +1,55 @@
+<div class="home-page-holder">
+  <div class="home-block-holder">
+    <div class="schedule-content-holder">
+
+      <div id="schedule-block" class="schedule-block">
+<h1>Edit Team</h1>
+
+<%= form_with model: [:admin, @team], local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :dollars_owed %>
+    <%= form.number_field :dollars_owed %>
+  </div>
+  <div>
+    <%= form.label :dollars_won %>
+    <%= form.number_field :dollars_won %>
+  </div>
+  <div>
+    <%= form.label :wins %>
+    <%= form.number_field :wins %>
+  </div>
+  <div>
+    <%= form.label :losses %>
+    <%= form.number_field :losses %>
+  </div>
+  <div>
+    <%= form.label :ties %>
+    <%= form.number_field :ties %>
+  </div>
+  <div>
+    <%= form.label :points_for %>
+    <%= form.number_field :points_for %>
+  </div>
+  <div>
+    <%= form.label :points_against %>
+    <%= form.number_field :points_against %>
+  </div>
+  <div>
+    <%= form.label :highest_week %>
+    <%= form.text_field :highest_week %>
+  </div>
+  <div>
+    <%= form.submit 'Update Team' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to dashboard', admin_dashboard_path %>
+
+</div>
+</div>
+</div>
+</div>

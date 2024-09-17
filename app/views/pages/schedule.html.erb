@@ -6,9 +6,12 @@
         <h1>SCHEDULE</h1>
 
         <div class="week-selector">
-          <% @weeks.each do |week| %>
-            <div id="week-<%= week.number %>" class="week-num">Week <%= week.number %></div>
-          <% end %>
+          <label for="week-select">Select Week:</label>
+          <select id="week-select" class="week-select">
+            <% @weeks.each do |week| %>
+              <option value="<%= week.number %>">Week <%= week.number %></option>
+            <% end %>
+          </select>
         </div>
 
         <h2 id="current-week-heading">Week 1</h2>

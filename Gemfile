@@ -43,6 +43,8 @@ gem 'nokogiri', '~> 1.11'
 
 gem 'psych', '~> 3.3'
 
+gem 'devise'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 

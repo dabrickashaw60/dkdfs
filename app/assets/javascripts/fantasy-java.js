@@ -23,31 +23,39 @@ document.addEventListener("turbo:load", function() {
 
 });
 
-
 document.addEventListener("turbo:load", function() {
-  // Array of week numbers to loop through
-  const totalWeeks = 14;
+  const totalWeeks = 14; // Total number of weeks
 
   // Hide all week tables
   function hideAllWeeks() {
-      for (let i = 1; i <= totalWeeks; i++) {
-          $(`#week${i}`).css("display", "none");
-      }
+    for (let i = 1; i <= totalWeeks; i++) {
+      $(`#week${i}`).css("display", "none");
+    }
   }
 
   // Show the selected week table
   function showWeek(weekNumber) {
-      hideAllWeeks(); // Hide all other weeks first
-      $(`#week${weekNumber}`).css("display", "table"); // Show the selected week
+    hideAllWeeks(); // Hide all other weeks first
+    $(`#week${weekNumber}`).css("display", "table"); // Show the selected week
+    updateCurrentWeekHeading(weekNumber); // Update the heading with the selected week
   }
 
-  // Attach click event to each week button
-  for (let i = 1; i <= totalWeeks; i++) {
-      $(`#${i}`).on("click", function() {
-          showWeek(i);
-      });
+  // Update the current week heading
+  function updateCurrentWeekHeading(weekNumber) {
+    $('#current-week-heading').text(`Week ${weekNumber}`);
   }
+
+  // Attach change event to the week select dropdown
+  $('#week-select').on('change', function() {
+    const selectedWeek = $(this).val();
+    showWeek(selectedWeek); // Show the selected week and update heading
+  });
+
+  // Initialize by showing Week 1 (or you can choose to initialize based on the first value in the dropdown)
+  showWeek(1);
 });
+
+
 
 
 

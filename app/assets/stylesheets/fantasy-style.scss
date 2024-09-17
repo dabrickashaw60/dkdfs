@@ -189,35 +189,16 @@ body{
 	background: none;
     text-align: center;
 }
-.week-selector{
-    
-    height: 60px;
-    width: 100%;
-    position: relative;
-    background: none;
+.week-selector {
+  margin-bottom: 20px;
 }
-.week-num{
-    height: 30px;
-    width: 129px;
-    float: left;
-    background: none;
-    color: white;
-    line-height: 25px;
-    text-align: center;
-    border: 2px solid white;
-    cursor: pointer;
-    font-size: 20px;
+
+.week-select {
+  font-size: 18px;
+  padding: 5px;
 }
-.week-num:hover{
-    background: white;
-    color: black;
-}
-#week14{
-    display: table;
-}
-#week1, #week2, #week3, #week4, #week5, #week6, #week7, #week8, #week9, #week10, #week11, #week12, #week13{
-    display: none;
-}
+
+
 .payout-block, .standings-block, .schedule-block, .dk-league-page-block{
 	height: 400px;
 	width: 98%;
@@ -461,9 +442,9 @@ body{
 	margin: 0 auto;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 30px;
-    margin-top: 30px;
-    padding-bottom: 20px;
+	margin-bottom: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
     color: white;
 }
 .standings-tbl tr:hover{

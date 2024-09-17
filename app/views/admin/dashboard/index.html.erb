@@ -1,0 +1,49 @@
+
+<div class="home-page-holder">
+  <div class="standings-block-holder">
+	   	<div class="standings-content-holder">
+        <div id="standings-block" class="standings-block">
+        <h1>Admin Dashboard</h1>
+
+        <h2>Teams</h2>
+            	<div class="standings-tbl-holder">
+                <table id="standings-tbl"class="standings-tbl">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Dollars Owed</th>
+              <th>Dollars Won</th>
+              <th>Wins</th>
+              <th>Losses</th>
+              <th>Ties</th>
+              <th>Points For</th>
+              <th>Points Against</th>
+              <th>Highest Week</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @teams.each do |team| %>
+              <tr>
+                <td><%= team.name %></td>
+                <td><%= team.dollars_owed %></td>
+                <td><%= team.dollars_won %></td>
+                <td><%= team.wins %></td>
+                <td><%= team.losses %></td>
+                <td><%= team.ties %></td>
+                <td><%= team.points_for %></td>
+                <td><%= team.points_against %></td>
+                <td><%= team.highest_week %></td>
+                <td><%= link_to 'Edit', edit_admin_team_path(team) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <h2>Upload CSV for Weeks</h2>
+        <%= link_to 'Upload CSV', admin_weeks_upload_csv_form_path %>
+        </div>
+</div>
+</div>
+</div>
+</div>
