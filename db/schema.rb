@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2024_09_17_141608) do
 
-  create_table "games", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "games", charset: "latin1", force: :cascade do |t|
     t.bigint "week_id", null: false
     t.bigint "home_team_id", null: false
     t.bigint "away_team_id", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2024_09_17_141608) do
     t.index ["week_id"], name: "index_games_on_week_id"
   end
 
-  create_table "teams", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "teams", charset: "latin1", force: :cascade do |t|
     t.string "name"
     t.decimal "dollars_owed", precision: 8, scale: 2
     t.decimal "dollars_won", precision: 8, scale: 2
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2024_09_17_141608) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", charset: "latin1", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2024_09_17_141608) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "weeks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "weeks", charset: "latin1", force: :cascade do |t|
     t.integer "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
