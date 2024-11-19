@@ -2,6 +2,7 @@ class WeeksController < ApplicationController
   def show
     @week = Week.find(params[:id])
     @games = @week.games
+    @default_week_number = 4
   end
 
   def upload_csv_form
