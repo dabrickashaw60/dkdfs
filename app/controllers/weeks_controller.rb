@@ -10,85 +10,83 @@ class WeeksController < ApplicationController
   end
 
   def upload_csv
-    @week = Week.find_by(number: params[:week_number])
-  
+    season = params[:season]
+    @week = Week.find_by(number: params[:week_number], season: season)
+
     if @week && params[:file].present?
-      Rails.logger.info("Starting CSV upload for Week #{params[:week_number]}")
-      
+      Rails.logger.info("Starting CSV upload for Week #{params[:week_number]}, Season #{season}")
+
       CSV.foreach(params[:file].path, headers: true) do |row|
         team_name = row['EntryName']
-        next if team_name.blank? # Skip rows with missing team names
-  
+        next if team_name.blank?
+
         team = Team.find_by(name: team_name)
-  
-        if team.present?
-          game = @week.games.find_by(home_team: team) || @week.games.find_by(away_team: team)
-  
-          if game.present?
-            if game.home_team == team
-              Rails.logger.info("Updating home score for team: #{team.name}, Points: #{row['Points']}")
-              game.update(home_score: row['Points'].to_f)
-            else
-              Rails.logger.info("Updating away score for team: #{team.name}, Points: #{row['Points']}")
-              game.update(away_score: row['Points'].to_f)
-            end
-          else
-            Rails.logger.info("Game not found for team: #{team.name}")
-          end
+        next unless team
+
+        game = @week.games.find_by(home_team: team) || @week.games.find_by(away_team: team)
+        next unless game
+
+        if game.home_team == team
+          game.update(home_score: row['Points'].to_f)
         else
-          Rails.logger.info("Team not found: #{team_name}")
+          game.update(away_score: row['Points'].to_f)
         end
       end
-  
-      update_week_results(@week) # Update wins, losses, and ties based on the current week
+
+      update_week_results(@week, season)
       flash[:notice] = "Scores for Week #{params[:week_number]} uploaded successfully!"
     else
-      flash[:alert] = "Invalid week or file"
+      flash[:alert] = "Invalid week, season, or file."
     end
-  
+
     redirect_to root_path
   end
 
+
   private
 
-def update_week_results(week)
-  Rails.logger.info("Updating results for week #{week.number}")
-  
-  week.games.each do |game|
-    home_team = game.home_team
-    away_team = game.away_team
+  def update_week_results(week, season)
+    week.games.each do |game|
+      home_team = game.home_team
+      away_team = game.away_team
 
-    if game.home_score && game.away_score
-      if game.home_score > game.away_score
-        Rails.logger.info("Home team wins: #{home_team.name} (#{game.home_score} > #{game.away_score})")
-        home_team.increment!(:wins)
-        away_team.increment!(:losses)
-      elsif game.away_score > game.home_score
-        Rails.logger.info("Away team wins: #{away_team.name} (#{game.away_score} > #{game.home_score})")
-        away_team.increment!(:wins)
-        home_team.increment!(:losses)
-      else
-        Rails.logger.info("Game tied between #{home_team.name} and #{away_team.name}")
-        home_team.increment!(:ties)
-        away_team.increment!(:ties)
+      home_season = TeamSeason.find_or_create_by(team: home_team, season: season)
+      away_season = TeamSeason.find_or_create_by(team: away_team, season: season)
+
+      if game.home_score.present? && game.away_score.present?
+        home_score = game.home_score.to_f
+        away_score = game.away_score.to_f
+
+        # Determine win/loss/tie
+        if home_score > away_score
+          home_season.increment!(:wins)
+          away_season.increment!(:losses)
+        elsif away_score > home_score
+          away_season.increment!(:wins)
+          home_season.increment!(:losses)
+        else
+          home_season.increment!(:ties)
+          away_season.increment!(:ties)
+        end
+
+        # Update points for/against
+        home_season.increment!(:points_for, home_score)
+        home_season.increment!(:points_against, away_score)
+        away_season.increment!(:points_for, away_score)
+        away_season.increment!(:points_against, home_score)
+
+        # Update highest week score
+        if home_score > (home_season.highest_week.to_s[/\d+\.?\d*/].to_f || 0)
+          home_season.update!(highest_week: "#{home_score} (#{week.number})")
+        end
+
+        if away_score > (away_season.highest_week.to_s[/\d+\.?\d*/].to_f || 0)
+          away_season.update!(highest_week: "#{away_score} (#{week.number})")
+        end
+
       end
-
-      # Update points for and points against
-      home_team.increment!(:points_for, game.home_score)
-      home_team.increment!(:points_against, game.away_score)
-      away_team.increment!(:points_for, game.away_score)
-      away_team.increment!(:points_against, game.home_score)
-
-      # Update highest week score
-      home_team.update_highest_week
-      away_team.update_highest_week
-    else
-      Rails.logger.info("Game incomplete: #{home_team.name} vs. #{away_team.name}")
     end
   end
-end
 
-  
-  
   
 end

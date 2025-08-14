@@ -1,107 +1,107 @@
 <!--  -->
 
-	<div class="home-block-holder">
-	   	<div class="content-holder">
+<div class="home-block-holder">
+  <div class="content-holder">
 
-            <div id="payout-block" class="payout-block">
+    <div id="payout-block" class="payout-block">
 
-                <div class="home-desc">
+        <div class="home-desc">
 
 					<h1>D K D F S</h1>
 
 					<h3>14 TEAM LEAGUE</h3>
 
-					<h2>2024-2025 DK FOOTBALL SUNDAY SEASON</h2>
+          <h2><%= "#{@season} DK FOOTBALL SUNDAY SEASON" %></h2>
 
-							  <h2>RULES</h2>
+          <h2>RULES</h2>
 
-                <table class="rules-tbl">
-                	<tbody>
-                    		<tr>
-                        	<td>A Tie is a Tie</td>
+          <table class="rules-tbl">
+            <tbody>
+                  <tr>
+                    <td>A Tie is a Tie</td>
 
-                        </tr>
-                    	<tr>
-                        	<td>Playoff seeding and final standings tie breaker will be Regular Season Total Points...</td>
-                        </tr>
-                    	<tr>
-                        	<td>Weeks 1 - 14, each team plays each other head to head 1 time...</td>
-                        </tr>
-                    	<tr>
-                        	<td>In Week 15, the top 8 teams enter the Playoffs.  You will have an advantage as the 1 seed as your side of the bracket will not feature the 2 or 3 seed...</td>
-                        </tr>
+                  </tr>
+                <tr>
+                    <td>Playoff seeding and final standings tie breaker will be Regular Season Total Points...</td>
+                  </tr>
+                <tr>
+                    <td>Weeks 1 - 14, each team plays each other head to head 1 time...</td>
+                  </tr>
+                <tr>
+                    <td>In Week 15, the top 8 teams enter the Playoffs.  You will have an advantage as the 1 seed as your side of the bracket will not feature the 2 or 3 seed...</td>
+                  </tr>
 
-                    </tbody>
-                </table>
+              </tbody>
+          </table>
 
-                <h2>PAYOUTS</h2>
+          <h2>PAYOUTS</h2>
 
-                <table class="payout-tbl">
-                	<tbody>
-                    	<tr>
-                        	<td>TOTAL AMOUNT</td>
-                            <td>$2800</td>
-                        </tr>
-                    	<tr>
-                        	<td>League Winner</td>
-                            <td>$1000</td>
-                        </tr>
-                    	<tr>
-                        	<td>Runner Up</td>
-                            <td>$500</td>
-                        </tr>
-                    	<tr>
-                        	<td>Weekly High Score (weeks 1-14)</td>
-                            <td>$50 ($700 tot.)</td>
-                        </tr>
-                    	<tr>
-                        	<td>Thanksgiving Day High Score</td>
-                            <td>$200</td>
-                        </tr>
-                    	<tr>
-                        	<td>Thanksgiving Day 2nd Highest Score</td>
-                            <td>$100</td>
-                        </tr>
-                    	<tr>
-                        	<td>Christmas Day High Score</td>
-                            <td>$200</td>
-                        </tr>
-                    	<tr>
-                        	<td>Christmas Day 2nd Highest Score</td>
-                            <td>$100</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-
-
-                <h2>MEMBERS (14)</h2>
-
-<table class="members-tbl">
-  <thead>
-    <tr>
-      <th>MEMBER</th>
-      <th>$ OWED</th>
-      <th>$ WON</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @teams.each do |team| %>
-      <tr>
-        <td><%= team.name %></td>
-        <td>$ <%= team.dollars_owed %></td>
-        <td>$ <%= team.dollars_won %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <table class="payout-tbl">
+            <tbody>
+                <tr>
+                    <td>TOTAL AMOUNT</td>
+                      <td>$2800</td>
+                  </tr>
+                <tr>
+                    <td>League Winner</td>
+                      <td>$1000</td>
+                  </tr>
+                <tr>
+                    <td>Runner Up</td>
+                      <td>$500</td>
+                  </tr>
+                <tr>
+                    <td>Weekly High Score (weeks 1-14)</td>
+                      <td>$50 ($700 tot.)</td>
+                  </tr>
+                <tr>
+                    <td>Thanksgiving Day High Score</td>
+                      <td>$200</td>
+                  </tr>
+                <tr>
+                    <td>Thanksgiving Day 2nd Highest Score</td>
+                      <td>$100</td>
+                  </tr>
+                <tr>
+                    <td>Christmas Day High Score</td>
+                      <td>$200</td>
+                  </tr>
+                <tr>
+                    <td>Christmas Day 2nd Highest Score</td>
+                      <td>$100</td>
+                  </tr>
+              </tbody>
+          </table>
 
 
-                </div>
-            </div>
 
+          <h2>MEMBERS (14)</h2>
+          <%= form_with url: root_path, method: :get, local: true do %>
+            <label for="season-select"><strong>Select Season:</strong></label>
+            <%= select_tag :season, options_for_select(@available_seasons, @season), onchange: 'this.form.submit()' %>
+          <% end %>
+
+          <table class="members-tbl">
+            <thead>
+              <tr>
+                <th>MEMBER</th>
+                <th>$ OWED</th>
+                <th>$ WON</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @teams.each do |team_season| %>
+                <tr>
+                  <td><%= team_season.team.name %></td>
+                  <td>$ <%= team_season.dollars_owed %></td>
+                  <td>$ <%= team_season.dollars_won %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
-
+      </div>
     </div>
+  </div>
 </div>
 <!-- -->

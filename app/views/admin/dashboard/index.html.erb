@@ -6,44 +6,49 @@
         <h1>Admin Dashboard</h1>
 
         <h2>Teams</h2>
-            	<div class="standings-tbl-holder">
-                <table id="standings-tbl"class="standings-tbl">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Dollars Owed</th>
-              <th>Dollars Won</th>
-              <th>Wins</th>
-              <th>Losses</th>
-              <th>Ties</th>
-              <th>Points For</th>
-              <th>Points Against</th>
-              <th>Highest Week</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @teams.each do |team| %>
-              <tr>
-                <td><%= team.name %></td>
-                <td><%= team.dollars_owed %></td>
-                <td><%= team.dollars_won %></td>
-                <td><%= team.wins %></td>
-                <td><%= team.losses %></td>
-                <td><%= team.ties %></td>
-                <td><%= team.points_for %></td>
-                <td><%= team.points_against %></td>
-                <td><%= team.highest_week %></td>
-                <td><%= link_to 'Edit', edit_admin_team_path(team) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <div class="standings-tbl-holder">
+          <%= form_with url: admin_dashboard_path, method: :get, local: true do %>
+            <label for="season-select">Season:</label>
+            <%= select_tag :season, options_for_select(@available_seasons, @season), onchange: 'this.form.submit()' %>
+          <% end %>
 
-        <h2>Upload CSV for Weeks</h2>
-        <%= link_to 'Upload CSV', admin_weeks_upload_csv_form_path %>
+          <table id="standings-tbl" class="standings-tbl">
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>$ Owed</th>
+                <th>$ Won</th>
+                <th>W</th>
+                <th>L</th>
+                <th>T</th>
+                <th>PF</th>
+                <th>PA</th>
+                <th>High Week</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @teams.each do |team_season| %>
+                <tr>
+                  <td><%= team_season.team.name %></td>
+                  <td><%= team_season.dollars_owed %></td>
+                  <td><%= team_season.dollars_won %></td>
+                  <td><%= team_season.wins %></td>
+                  <td><%= team_season.losses %></td>
+                  <td><%= team_season.ties %></td>
+                  <td><%= team_season.points_for %></td>
+                  <td><%= team_season.points_against %></td>
+                  <td><%= team_season.highest_week %></td>
+                  <td><%= link_to 'Edit', edit_admin_team_path(team_season.team_id, season: team_season.season) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <h2>Upload CSV for Weeks</h2>
+          <%= link_to 'Upload CSV', upload_csv_form_weeks_path, style: 'margin-bottom: 10px; display: inline-block;' %>
+
         </div>
-</div>
-</div>
-</div>
+      </div>
+    </div>
+  </div>
 </div>

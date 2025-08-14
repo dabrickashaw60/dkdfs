@@ -4,6 +4,13 @@
 	   	<div class="standings-content-holder">
             <div id="standings-block" class="standings-block">
             	<div class="standings-tbl-holder">
+              <div class="season-selector-standings">
+                <%= form_with url: standings_path, method: :get, local: true do %>
+                  <label for="season-select"><strong>Select Season:</strong></label>
+                  <%= select_tag :season, options_for_select(@available_seasons, @season), id: "season-select", onchange: "this.form.submit()" %>
+                <% end %>
+              </div>
+
                 <table id="standings-tbl"class="standings-tbl">
                   <thead>
                     <tr>
@@ -18,18 +25,19 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% @teams.each_with_index do |team, index| %>
+                    <% @teams.each_with_index do |team_season, index| %>
                       <tr>
                         <td><%= index + 1 %></td>
-                        <td><%= team.name %></td>
-                        <td><%= team.wins %></td>
-                        <td><%= team.losses %></td>
-                        <td><%= team.ties %></td>
-                        <td><%= team.total_points_for %></td> <!-- Use the dynamic calculation -->
-                        <td><%= team.total_points_against %></td> <!-- Use the dynamic calculation -->
-                        <td><%= team.highest_week %></td>
+                        <td><%= team_season.team.name %></td>
+                        <td><%= team_season.wins %></td>
+                        <td><%= team_season.losses %></td>
+                        <td><%= team_season.ties %></td>
+                        <td><%= team_season.points_for %></td>
+                        <td><%= team_season.points_against %></td>
+                        <td><%= team_season.highest_week %></td>
                       </tr>
                     <% end %>
+
                   </tbody>
                 </table>
 
@@ -47,18 +55,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @teams.each_with_index do |team, index| %>
+                  <% @teams.each_with_index do |team_season, index| %>
                     <tr>
                       <td><%= index + 1 %></td>
-                      <td><%= team.name %></td>
-                      <td><%= team.wins %></td>
-                      <td><%= team.losses %></td>
-                      <td><%= team.ties %></td>
-                      <td><%= team.points_for %></td>
-                      <td><%= team.points_against %></td>
-                      <td><%= team.highest_week %></td>
+                      <td><%= team_season.team.name %></td>
+                      <td><%= team_season.wins %></td>
+                      <td><%= team_season.losses %></td>
+                      <td><%= team_season.ties %></td>
+                      <td><%= team_season.points_for %></td>
+                      <td><%= team_season.points_against %></td>
+                      <td><%= team_season.highest_week %></td>
                     </tr>
                   <% end %>
+
                 </tbody>
               </table>
         </div>

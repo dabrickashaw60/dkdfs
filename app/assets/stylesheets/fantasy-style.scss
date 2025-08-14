@@ -18,6 +18,9 @@ body{
 	background-size: cover;
 	background-position: top center;
 }
+
+/***************** UNIVERSAL ************/
+
 /*****************	PHOTOS	*************/
 .main-logo{
 	height: 125px;
@@ -110,7 +113,7 @@ body{
 .button-list li, .standings-button-list li{
 	float: left;
 	height: 60px;
-	width: 150px;
+	width: 125px;
 	line-height: 60px;
 	text-align: center;
 	background: none;
@@ -189,13 +192,28 @@ body{
 	background: none;
     text-align: center;
 }
-.week-selector {
-  margin-bottom: 20px;
-}
 
-.week-select {
+.week-select, #season-select, #season{
   font-size: 18px;
   padding: 5px;
+}
+
+.selector-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem; /* Space between the two selectors */
+  margin-bottom: 1rem;
+  flex-wrap: wrap; /* Makes it responsive on narrow screens */
+  justify-content: center;
+}
+
+.selector-row .season-selector,
+.selector-row .week-selector {
+  display: flex;
+  align-items: center;
+}
+.season-selector-standings{
+  margin-bottom: 10px;
 }
 
 
@@ -493,14 +511,14 @@ table.dataTable tbody tr:hover{
 /******************/
 
 /* SCHEDULE PAGE */
-.schedule-tbl-holder{
+.schedule-tbl-holder, .playoffs-tbl-holder{
 	text-align: center;
 }
-.schedule-tbl-holder h1{
+.schedule-tbl-holder h1, .playoffs-tbl-holder h1{
 	padding: 25px;
     margin-block-end: 0;
 }
-.schedule-tbl{
+.schedule-tbl, .playoffs-tbl{
 	font-size: 24px;
 	font-weight: lighter;
 	position: relative;
@@ -509,22 +527,22 @@ table.dataTable tbody tr:hover{
 	height: auto;
 	text-align: center;
 }
-.schedule-tbl tr th:hover{
+.schedule-tbl tr th:hover, .playoffs-tbl tr th:hover{
 	background: black;
 	color: white;
 }
 
 
-.schedule-tbl tr:hover{
+.schedule-tbl tr:hover, .playoffs-tbl tr:hover{
 	background: white;
 	color: black;
 }
-.schedule-tbl tr td{
+.schedule-tbl tr td, .playoffs-tbl tr td{
 	padding-top: 10px;
     padding-bottom: 10px;
 	width: 33%;
 }
-.schedule-tbl th{
+.schedule-tbl th, .playoffs-tbl th{
 	padding-top: 5px;
 	padding-bottom: 5px;
 }

@@ -8,24 +8,28 @@ class Admin::TeamsController < ApplicationController
 
   def edit
     @team = Team.find(params[:id])
+    @season = params[:season] || "2025-2026"
+    @team_season = @team.team_seasons.find_by(season: @season)
   end
 
   def update
     @team = Team.find(params[:id])
-    
-    if @team.update(team_params)
-      flash[:notice] = "Team updated successfully!"
-      redirect_to admin_dashboard_path # Redirect to the dashboard or another appropriate path
+    @season = params[:season]
+    @team_season = @team.team_seasons.find_by(season: @season)
+
+    if @team_season.update(team_season_params)
+      flash[:notice] = "Team season updated successfully!"
+      redirect_to admin_dashboard_path(season: @season)
     else
-      flash[:alert] = "There was a problem updating the team."
+      flash[:alert] = "There was a problem updating the team season."
       render :edit
     end
   end
 
   private
 
-  def team_params
-    params.require(:team).permit(:name, :dollars_owed, :dollars_won, :wins, :losses, :ties, :points_for, :points_against, :highest_week)
+  def team_season_params
+    params.require(:team_season).permit(:dollars_owed, :dollars_won, :wins, :losses, :ties, :points_for, :points_against, :highest_week)
   end
 
   def authenticate_admin!

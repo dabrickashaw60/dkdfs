@@ -3,14 +3,9 @@
     <div class="schedule-content-holder">
 
       <div id="schedule-block" class="schedule-block">
+        <h1>Edit Team: <%= @team.name %> (<%= @season %>)</h1>
 
-        <h1>Edit Team</h1>
-
-        <%= form_with model: [:admin, @team], local: true do |form| %>
-          <div>
-            <%= form.label :name %>
-            <%= form.text_field :name %>
-          </div>
+        <%= form_with model: @team_season, url: admin_team_path(@team, season: @season), local: true do |form| %>
           <div>
             <%= form.label :dollars_owed %>
             <%= form.number_field :dollars_owed %>
@@ -44,12 +39,12 @@
             <%= form.text_field :highest_week %>
           </div>
           <div>
-            <%= form.submit 'Update Team' %>
+            <%= form.submit 'Update Team Season' %>
           </div>
         <% end %>
 
-        <%= link_to 'Back to Dashboard', admin_dashboard_path %>
-</div>
-</div>
-</div>
+        <%= link_to 'Back to Dashboard', admin_dashboard_path(season: @season) %>
+      </div>
+    </div>
+  </div>
 </div>

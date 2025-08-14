@@ -27,23 +27,26 @@
   </head>
 
   <body>
-    	<div class="top-bottom-bar">
-    	<div class="button-selection-holder">
-        	<a href="http://www.dkfootballsunday.com"> 
-          <%= image_tag 'DK-Football-Sunday-Logo.png', class: 'main-logo' %>  
+  <div class="top-bottom-bar">
+    <div class="button-selection-holder">
+      <a href="http://www.dkfootballsunday.com"> 
+      <%= image_tag 'DK-Football-Sunday-Logo.png', class: 'main-logo' %>  
+        </a>
+        <ul class="button-list">
+          <li><a class="navBar-top-dropdown" href="<%= root_path %>">HOME PAGE</a></li>
+          <li id="schedule-btn"><a class="navBar-top-dropdown" href="<%= schedule_path %>">SCHEDULE</a></li>
+          <li><a class="navBar-top-dropdown" href="<%= standings_path %>">STANDINGS</a></li>
+          <% if current_user&.admin? %>
+            <li><a class="navBar-top-dropdown" href="<%= admin_dashboard_path %>">ADMIN</a></li>
+          <% end %>
+          <li>
+            <a class="navBar-top-dropdown" target="_blank" href="https://www.draftkings.com/leagues/sshycnq8/contests/upcoming">
+              <%= image_tag 'DK_Logo-one-line.png', class: 'menu-dk-logo', alt: 'League Page' %> LEAGUE PAGE
             </a>
-            <ul class="button-list">
-            	<li><a class="navBar-top-dropdown" href="home.html">HOME</a></li>
-                <li id="schedule-btn"><a class="navBar-top-dropdown" href="schedule.html">SCHEDULE</a></li>
-                <li><a class="navBar-top-dropdown" href="standings.html">STANDINGS</a></li>
-                <li>
-                  <a class="navBar-top-dropdown" target="_blank" href="https://www.draftkings.com/leagues/sshycnq8/contests/upcoming">
-                    <%= image_tag 'DK_Logo-one-line.png', class: 'menu-dk-logo', alt: 'League Page' %> LEAGUE PAGE
-                  </a>
-                </li>
-            </ul>
-        </div>
+          </li>
+        </ul>
     </div>
+  </div>
 <!-- MOBILE 3 LINE MENU -->
 <div class="home-header">
   <div class="box-shadow-sec">
@@ -53,9 +56,12 @@
 </div>
 <div class="holder">
   <ul>
-    <li><a href="http://dkfootballsunday.com">HOME</a></li>
-    <li><a href="schedule.html">SCHEDULE</a></li>
-    <li><a href="standings.html">STANDINGS</a></li>
+    <li><a href="<%= root_path %>">HOME</a></li>
+    <li><a href="<%= schedule_path %>">SCHEDULE</a></li>
+    <li><a href="<%= standings_path %>">STANDINGS</a></li>
+    <% if current_user&.admin? %>
+    <li><a href="<%= admin_dashboard_path %>">ADMIN</a></li>
+    <% end %>
     <li>
       <a target="_blank" href="https://www.draftkings.com/leagues/cnju2zq8/contests/upcoming">                    
       <%= image_tag 'DK_Logo-one-line.png', class: 'menu-dk-logo', alt: 'League Page' %> LEAGUE PAGE

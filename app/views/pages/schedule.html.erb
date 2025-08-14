@@ -1,23 +1,31 @@
 <div class="home-page-holder">
   <div class="home-block-holder">
     <div class="schedule-content-holder">
+      
 
+      <!-- Existing Schedule Block -->
       <div id="schedule-block" class="schedule-block">
         <h1>SCHEDULE</h1>
+          <div class="selector-row">
+            <div class="season-selector">
+              <%= form_with url: schedule_path, method: :get, local: true do %>
+                <label for="season-select"><strong>Select Season:</strong></label>
+                <%= select_tag :season, options_for_select(@available_seasons, @season), id: "season-select", onchange: "this.form.submit()" %>
+              <% end %>
+            </div>
 
-        <div class="week-selector">
-          <label for="week-select">Select Week:</label>
-          <select id="week-select" class="week-select">
-            <% @weeks.each do |week| %>
-              <option value="<%= week.number %>" <%= 'selected' if week.number == @default_week_number %>>
-                Week <%= week.number %>
-              </option>
-            <% end %>
-          </select>
-        </div>
+            <div class="week-selector">
+              <label for="week-select"><strong>Select Week:</strong></label>
+              <select id="week-select" class="week-select">
+                <% @weeks.each do |week| %>
+                  <option value="<%= week.number %>" <%= 'selected' if week.number == @default_week_number %>>
+                    Week <%= week.number %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
 
-
-        <h2 id="current-week-heading">Week 1</h2>
 
         <div class="schedule-tbl-holder">
           <% @weeks.each do |week| %>
@@ -49,27 +57,22 @@
 
 <script>
 document.addEventListener("turbo:load", function() {
-  // Initially show Week 1 table and set heading to Week 1
-  document.querySelector("#week1").style.display = "table";
-  document.querySelector("#current-week-heading").textContent = "Week 1";
+  const defaultWeek = <%= @default_week_number %>;
 
-  // Attach click event to each week button
-  document.querySelectorAll(".week-num").forEach(function(weekButton) {
-    weekButton.addEventListener("click", function() {
-      const weekId = weekButton.id.replace('week-', '');
+  // Show the default week's table
+  const table = document.querySelector(`#week${defaultWeek}`);
+  if (table) table.style.display = "table";
 
-      // Hide all tables
-      document.querySelectorAll(".schedule-tbl").forEach(function(table) {
-        table.style.display = "none";
-      });
+  // Update table on week dropdown change
+  document.querySelector("#week-select").addEventListener("change", function() {
+    const selectedWeek = this.value;
 
-      // Show selected week table
-      document.querySelector(`#week${weekId}`).style.display = "table";
-
-      // Update the heading to reflect the selected week
-      document.querySelector("#current-week-heading").textContent = `Week ${weekId}`;
+    document.querySelectorAll(".schedule-tbl").forEach(function(table) {
+      table.style.display = "none";
     });
+
+    const selectedTable = document.querySelector(`#week${selectedWeek}`);
+    if (selectedTable) selectedTable.style.display = "table";
   });
 });
-
 </script>

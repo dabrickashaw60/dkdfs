@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team: one
+  season: MyString
+  wins: 1
+  losses: 1
+  ties: 1
+  points_for: 1.5
+  points_against: 1.5
+  highest_week: MyString
+  dollars_owed: 1.5
+  dollars_won: 1.5
+
+two:
+  team: two
+  season: MyString
+  wins: 1
+  losses: 1
+  ties: 1
+  points_for: 1.5
+  points_against: 1.5
+  highest_week: MyString
+  dollars_owed: 1.5
+  dollars_won: 1.5

@@ -3,9 +3,12 @@ class Admin::DashboardController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @teams = Team.all
-    @weeks = Week.all
+    @season = params[:season] || "2025-2026"
+    @teams = TeamSeason.includes(:team).where(season: @season).order('teams.name')
+    @weeks = Week.where(season: @season)
+    @available_seasons = TeamSeason.distinct.pluck(:season).sort.reverse
   end
+
 
   private
 
