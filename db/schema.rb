@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_08_12_180530) do
+ActiveRecord::Schema.define(version: 2025_08_14_153747) do
 
-  create_table "games", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "drafted_player_week_stats", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "week_id", null: false
+    t.bigint "player_id", null: false
+    t.string "roster_position", null: false
+    t.decimal "pct_drafted", precision: 5, scale: 2
+    t.decimal "fpts", precision: 7, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_id"], name: "index_drafted_player_week_stats_on_player_id"
+    t.index ["week_id", "player_id"], name: "index_drafted_player_week_stats_on_week_id_and_player_id", unique: true
+    t.index ["week_id"], name: "index_drafted_player_week_stats_on_week_id"
+  end
+
+  create_table "games", charset: "latin1", collation: "latin1_swedish_ci", force: :cascade do |t|
     t.bigint "week_id", null: false
     t.bigint "home_team_id", null: false
     t.bigint "away_team_id", null: false
@@ -27,7 +40,13 @@ ActiveRecord::Schema.define(version: 2025_08_12_180530) do
     t.index ["week_id"], name: "index_games_on_week_id"
   end
 
-  create_table "team_seasons", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "players", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "team_seasons", charset: "latin1", collation: "latin1_swedish_ci", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.string "season"
     t.integer "wins"
@@ -43,7 +62,7 @@ ActiveRecord::Schema.define(version: 2025_08_12_180530) do
     t.index ["team_id"], name: "index_team_seasons_on_team_id"
   end
 
-  create_table "teams", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "teams", charset: "latin1", collation: "latin1_swedish_ci", force: :cascade do |t|
     t.string "name"
     t.decimal "dollars_owed", precision: 8, scale: 2
     t.decimal "dollars_won", precision: 8, scale: 2
@@ -58,7 +77,7 @@ ActiveRecord::Schema.define(version: 2025_08_12_180530) do
     t.string "season"
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "users", charset: "latin1", collation: "latin1_swedish_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -72,15 +91,31 @@ ActiveRecord::Schema.define(version: 2025_08_12_180530) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "weeks", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "week_team_lineups", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "week_id", null: false
+    t.bigint "team_id", null: false
+    t.text "lineup_text"
+    t.decimal "points", precision: 7, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_week_team_lineups_on_team_id"
+    t.index ["week_id", "team_id"], name: "index_week_team_lineups_on_week_id_and_team_id", unique: true
+    t.index ["week_id"], name: "index_week_team_lineups_on_week_id"
+  end
+
+  create_table "weeks", charset: "latin1", collation: "latin1_swedish_ci", force: :cascade do |t|
     t.integer "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "season"
   end
 
+  add_foreign_key "drafted_player_week_stats", "players"
+  add_foreign_key "drafted_player_week_stats", "weeks"
   add_foreign_key "games", "teams", column: "away_team_id"
   add_foreign_key "games", "teams", column: "home_team_id"
   add_foreign_key "games", "weeks"
   add_foreign_key "team_seasons", "teams"
+  add_foreign_key "week_team_lineups", "teams"
+  add_foreign_key "week_team_lineups", "weeks"
 end

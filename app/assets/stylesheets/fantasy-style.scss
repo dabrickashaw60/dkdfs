@@ -518,7 +518,7 @@ table.dataTable tbody tr:hover{
 	padding: 25px;
     margin-block-end: 0;
 }
-.schedule-tbl, .playoffs-tbl{
+.schedule-tbl, .playoffs-tbl, .lineups-tbl, .drafted-stats-tbl{
 	font-size: 24px;
 	font-weight: lighter;
 	position: relative;
@@ -532,8 +532,7 @@ table.dataTable tbody tr:hover{
 	color: white;
 }
 
-
-.schedule-tbl tr:hover, .playoffs-tbl tr:hover{
+.schedule-tbl tr:hover, .playoffs-tbl tr:hover, .drafted-stats-tbl tr:hover{
 	background: white;
 	color: black;
 }
@@ -573,6 +572,10 @@ table.dataTable tbody tr:hover{
 	height: 100%;
 	width: 50%;
 }
+.lineups-tbl .mini-lineup, .drafted-stats-tbl{
+  width: 100%;
+}
+
 /*****************/
 
 /****	MEMBERS TABLE	****/

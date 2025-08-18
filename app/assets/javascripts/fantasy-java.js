@@ -88,6 +88,39 @@ document.addEventListener("turbo:load", function() {
       "searching": false
     });
   }
+
+  // NEW: Drafted players table
+    if ($('#drafted-stats-tbl').length) {
+      $('#drafted-stats-tbl').DataTable({
+        order: [[2, 'desc'], [3, 'desc']],  // %Drafted desc, then FPTS desc
+        paging: false,
+        info: false,
+        searching: false,
+        columnDefs: [
+          // %Drafted column (index 2): strip % for sort/type
+          {
+            targets: 2,
+            render: function (data, type) {
+              if (type === 'sort' || type === 'type') {
+                return parseFloat(String(data).replace('%', '')) || 0;
+              }
+              return data;
+            }
+          },
+          // FPTS column (index 3): numeric sort
+          {
+            targets: 3,
+            render: function (data, type) {
+              if (type === 'sort' || type === 'type') {
+                return parseFloat(data) || 0;
+              }
+              return data;
+            }
+          }
+        ]
+      });
+    }
+
 });
 
 

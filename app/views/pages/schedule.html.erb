@@ -1,35 +1,35 @@
 <div class="home-page-holder">
   <div class="home-block-holder">
     <div class="schedule-content-holder">
-      
 
-      <!-- Existing Schedule Block -->
       <div id="schedule-block" class="schedule-block">
         <h1>SCHEDULE</h1>
-          <div class="selector-row">
-            <div class="season-selector">
-              <%= form_with url: schedule_path, method: :get, local: true do %>
-                <label for="season-select"><strong>Select Season:</strong></label>
-                <%= select_tag :season, options_for_select(@available_seasons, @season), id: "season-select", onchange: "this.form.submit()" %>
-              <% end %>
+
+        <!-- Combined Season + Week selector -->
+        <div class="selector-row">
+          <%= form_with url: schedule_path, method: :get, local: true, html: { id: "schedule-filter-form" } do %>
+            <div class="season-selector" style="display:inline-block; margin-right:1rem;">
+              <label for="season-select"><strong>Select Season:</strong></label>
+              <%= select_tag :season,
+                             options_for_select(@available_seasons, @season),
+                             id: "season-select",
+                             onchange: "document.getElementById('schedule-filter-form').submit();" %>
             </div>
 
-            <div class="week-selector">
+            <div class="week-selector" style="display:inline-block;">
               <label for="week-select"><strong>Select Week:</strong></label>
-              <select id="week-select" class="week-select">
-                <% @weeks.each do |week| %>
-                  <option value="<%= week.number %>" <%= 'selected' if week.number == @default_week_number %>>
-                    Week <%= week.number %>
-                  </option>
-                <% end %>
-              </select>
+              <%= select_tag :week_number,
+                             options_for_select(@weeks.map { |w| ["Week #{w.number}", w.number] }, @default_week_number),
+                             id: "week-select",
+                             onchange: "document.getElementById('schedule-filter-form').submit();" %>
             </div>
-          </div>
+          <% end %>
+        </div>
 
-
+        <!-- Selected week schedule -->
         <div class="schedule-tbl-holder">
-          <% @weeks.each do |week| %>
-            <table id="week<%= week.number %>" class="schedule-tbl" style="display: none;">
+          <% if @selected_week %>
+            <table class="schedule-tbl">
               <thead>
                 <tr>
                   <th>Home Team</th>
@@ -38,7 +38,7 @@
                 </tr>
               </thead>
               <tbody>
-                <% week.games.each do |game| %>
+                <% @selected_week.games.each do |game| %>
                   <tr>
                     <td><%= game.home_team.name %></td>
                     <td><%= game.home_score %> vs <%= game.away_score %></td>
@@ -49,30 +49,79 @@
             </table>
           <% end %>
         </div>
+
+        <!-- Team Lineups -->
+        <% if @selected_week && @team_lineups.any? %>
+          <h2>Team Lineups — Week <%= @selected_week.number %></h2>
+          <table class="lineups-tbl">
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>Points</th>
+                <th>Lineup (sorted)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @team_lineups.each do |lt| %>
+                <tr>
+                  <td><%= lt.team.name %></td>
+                  <td><%= lt.points %></td>
+                  <td>
+                    <table class="mini-lineup">
+                      <thead>
+                        <tr>
+                          <th>Slot</th>
+                          <th>Player</th>
+                          <th>% Drafted</th>
+                          <th>FPTS</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% lt.normalized_lineup.each do |slot, pname| %>
+                          <% s = stat_for_lineup_name(pname, @stats_by_name) %>
+                          <tr>
+                            <td><%= slot %></td>
+                            <td><%= pname %></td>
+                            <td><%= format_pct(s&.dig(:pct)) %></td>
+                            <td><%= format_fpts(s&.dig(:fpts)) %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+
+        <!-- Drafted Player Stats -->
+        <% if @selected_week && @drafted_stats.any? %>
+          <h2>Drafted Player Stats — Week <%= @selected_week.number %></h2>
+          <table id="drafted-stats-tbl" class="drafted-stats-tbl">
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Roster Position</th>
+                <th>% Drafted</th>
+                <th>FPTS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @drafted_stats.each do |stat| %>
+                <tr>
+                  <td><%= stat.player.name %></td>
+                  <td><%= stat.roster_position %></td>
+                  <td><%= "#{stat.pct_drafted.to_f.round(2)}%" %></td>
+                  <td><%= stat.fpts.to_f.round(2) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+
       </div>
 
     </div>
   </div>
 </div>
-
-<script>
-document.addEventListener("turbo:load", function() {
-  const defaultWeek = <%= @default_week_number %>;
-
-  // Show the default week's table
-  const table = document.querySelector(`#week${defaultWeek}`);
-  if (table) table.style.display = "table";
-
-  // Update table on week dropdown change
-  document.querySelector("#week-select").addEventListener("change", function() {
-    const selectedWeek = this.value;
-
-    document.querySelectorAll(".schedule-tbl").forEach(function(table) {
-      table.style.display = "none";
-    });
-
-    const selectedTable = document.querySelector(`#week${selectedWeek}`);
-    if (selectedTable) selectedTable.style.display = "table";
-  });
-});
-</script>
