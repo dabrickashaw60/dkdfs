@@ -16,14 +16,30 @@ class PagesController < ApplicationController
                 .order(:number)
 
     @available_seasons = Week.distinct.pluck(:season).sort.reverse
-
-    # If week_number missing or not in this season, default to first week in this season
+    
     requested_week = params[:week_number].to_i if params[:week_number].present?
     valid_numbers  = @weeks.map(&:number)
-    week_number    = valid_numbers.include?(requested_week) ? requested_week : valid_numbers.first
-
+    
+    # Find the first week where every game is unscored (nil or 0)
+    incomplete_week = @weeks.detect do |w|
+      w.games.all? do |g|
+        (g.home_score.nil? || g.home_score.to_f.zero?) &&
+        (g.away_score.nil? || g.away_score.to_f.zero?)
+      end
+    end
+    
+    week_number =
+      if valid_numbers.include?(requested_week)
+        requested_week
+      elsif incomplete_week
+        incomplete_week.number
+      else
+        valid_numbers.last
+      end
+    
     @default_week_number = week_number
     @selected_week = @weeks.find { |w| w.number == week_number }
+
 
     if @selected_week
       @team_lineups = WeekTeamLineup.includes(:team)
