@@ -19,16 +19,16 @@
             <div class="week-selector" style="display:inline-block;">
               <label for="week-select"><strong>Select Week:</strong></label>
               <%= select_tag :week_number,
-                             options_for_select(@weeks.map { |w| ["Week #{w.number}", w.number] }, @default_week_number),
-                             id: "week-select",
-                             onchange: "document.getElementById('schedule-filter-form').submit();" %>
+                            options_for_select(@weeks.map { |w| [week_label(w), w.number] }, @default_week_number),
+                            id: "week-select",
+                            onchange: "document.getElementById('schedule-filter-form').submit();" %>
+
             </div>
           <% end %>
         </div>
 
-        <!-- Selected week schedule -->
         <div class="schedule-tbl-holder">
-          <% if @selected_week %>
+          <% if @selected_week && !special_week?(@selected_week) %>
             <table class="schedule-tbl">
               <thead>
                 <tr>
@@ -50,9 +50,31 @@
           <% end %>
         </div>
 
-        <!-- Team Lineups -->
         <% if @selected_week && @team_lineups.any? %>
-          <h2>Team Lineups — Week <%= @selected_week.number %></h2>
+
+          <% if special_week?(@selected_week) %>
+            <h2><%= week_label(@selected_week) %> Results</h2>
+            <table class="lineups-summary-tbl">
+              <thead>
+                <tr>
+                  <th>Pos</th>
+                  <th>Team</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @team_lineups.each_with_index do |lt, index| %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= lt.team.name %></td>
+                    <td><%= lt.points %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+
+          <h2>Team Lineups — <%= week_label(@selected_week) %></h2>
           <table class="lineups-tbl">
             <thead>
               <tr>
@@ -95,9 +117,10 @@
           </table>
         <% end %>
 
+
         <!-- Drafted Player Stats -->
         <% if @selected_week && @drafted_stats.any? %>
-          <h2>Drafted Player Stats — Week <%= @selected_week.number %></h2>
+          <h2>Drafted Player Stats — <%= week_label(@selected_week) %></h2>
           <table id="drafted-stats-tbl" class="drafted-stats-tbl">
             <thead>
               <tr>

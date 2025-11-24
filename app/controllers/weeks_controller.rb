@@ -19,6 +19,19 @@ class WeeksController < ApplicationController
 
       csv_table = CSV.read(params[:file].path, headers: true)
 
+      if @week.special_slate?
+        Rails.logger.info("Processing special slate week (#{@week.label}) for Season #{season}")
+
+        ActiveRecord::Base.transaction do
+          upsert_week_team_lineups_with_ensure!(@week, csv_table, season)
+          upsert_drafted_player_week_stats!(@week, csv_table)
+        end
+
+        flash[:notice] = "#{@week.label} slate uploaded successfully (lineups and player stats only; standings unchanged)."
+        return redirect_to upload_csv_weeks_path
+      end
+
+
       ActiveRecord::Base.transaction do
         # === 1) Update game scores (now ensuring Team + TeamSeason) ===
         csv_table.each do |row|
@@ -58,6 +71,7 @@ class WeeksController < ApplicationController
   private
 
   def update_week_results(week, season)
+    return if week.special_slate?
     week.games.find_each do |game|
       home_team = game.home_team
       away_team = game.away_team

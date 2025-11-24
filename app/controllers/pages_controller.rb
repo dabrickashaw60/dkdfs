@@ -19,9 +19,11 @@ class PagesController < ApplicationController
     
     requested_week = params[:week_number].to_i if params[:week_number].present?
     valid_numbers  = @weeks.map(&:number)
-    
-    # Find the first week where every game is unscored (nil or 0)
-    incomplete_week = @weeks.detect do |w|
+
+    non_special_weeks = @weeks.reject(&:special_slate?)
+
+    # Find the first non-special week where every game is unscored (nil or 0)
+    incomplete_week = non_special_weeks.detect do |w|
       w.games.all? do |g|
         (g.home_score.nil? || g.home_score.to_f.zero?) &&
         (g.away_score.nil? || g.away_score.to_f.zero?)
@@ -73,6 +75,17 @@ class PagesController < ApplicationController
 
     @available_seasons = TeamSeason.distinct.pluck(:season).sort.reverse
   end
+
+  helper_method :week_label, :special_week?
+
+  def week_label(week)
+    week&.label
+  end
+
+  def special_week?(week)
+    week&.special_slate?
+  end
+
 
   private
 
