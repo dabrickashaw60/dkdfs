@@ -1,12 +1,13 @@
 source "https://rubygems.org"
 
-ruby "2.7.8"
+ruby "3.2.9"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 6.1.0'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
+gem "net-smtp", "~> 0.3"
 
 # Use MySQL as the database for Active Record
 gem 'mysql2', '>= 0.5.3'
@@ -38,13 +39,11 @@ gem 'dotenv-rails', groups: [:development, :test]
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
-gem 'sassc-rails'
+gem "sassc-rails", "2.1.2", require: false
 
 gem 'csv'
 
 gem 'nokogiri', '~> 1.11'
-
-gem 'psych', '~> 3.3'
 
 gem 'devise'
 

@@ -1,0 +1,7 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+
+PassengerAppRoot "/home/s4ndfvytw8mg/public_html/dkdfs"
+PassengerBaseURI "/"
+PassengerRuby "/opt/alt/ruby32/bin/ruby"
+
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
